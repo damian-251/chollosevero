@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/",[PagesController::class, "inicio"]) ->name("inicio");
+Route::post("/", [PagesController::class, "crear"])->name("chollos.crear");
+Route::delete('eliminar/{id}', [PagesController::class, "eliminar"])->name('chollos.eliminar');
+
+Route::get('chollos/editar/{id}', [ PagesController::class, 'editar' ]) -> name('chollos.editar');
+Route::put('chollos/editar/{id}', [PagesController::class, 'actualizar']) -> name('chollos.actualizar');

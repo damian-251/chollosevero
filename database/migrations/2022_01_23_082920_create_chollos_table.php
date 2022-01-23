@@ -15,14 +15,15 @@ class CreateChollosTable extends Migration
     {
         Schema::create('chollos', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string("titulo");
             $table->text("descripcion");
             $table->string("url");
             $table->string("categoria");
-            $table->integer("puntuacion");
+            $table->integer("puntuacion")->default(0);
             $table->float("precio");
             $table->float("precio_descuento");
-            $table->boolean("disponible");
+            $table->boolean("disponible")->default(true);
         });
     }
 

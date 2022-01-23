@@ -16,4 +16,3 @@ yarn-error.log
 .*
 !.gitignore
 /.vagrant
-.phpunit.result.cache
