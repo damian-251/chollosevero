@@ -1,3 +1,11 @@
+.titulo img {
+    width: 5rem;
+}
+
 img {
     width: 10rem;
+}
+
+.img-detalles {
+    width: 20rem;
 }

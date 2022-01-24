@@ -5,41 +5,7 @@
 
 @section('contenidoMain')
     <h2>Lista de chollos</h2>
-    <table border="1" class="table table-striped">
-        <thead>
-            <tr>
-            <th>Imagen</th>
-            <th>Puntuación</th>
-            <th>Título</th>
-            <th>Descripción</th>
-            <th>Categoría</th>
-            <th>Precio Anterior</th>
-            <th>Precio actual</th>
-            <th>Acción</th>  
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($chollos as $chollo)
-                <tr>
-                    <td> <img src={{ asset('assets/images/' . $chollo->id . '-chollo-severo.jpg') }} alt="imagen chollo" > </td>
-                    <td>{{$chollo->puntuacion}}</td>
-                    <td>{{$chollo->titulo}}</td>
-                    <td>{{ $chollo->descripcion }}</td>
-                    <td>{{$chollo->categoria}}</td>
-                    <td>{{$chollo->precio}}</td>
-                    <td>{{$chollo->precio_descuento}}</td>
-                    <td>
-                        <form action={{ route('chollos.editar', $chollo -> id) }} method="POST" class="d-inline">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                        </form>
-                    <a href="{{ route('chollos.editar', $chollo->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @include('chollos/tablaChollos')
 
     <h2>Añadir chollo</h2>
     <form action="{{ route('chollos.crear') }}" method="POST">

@@ -12,12 +12,12 @@
 <body>
     <header>
 
-        <div class="titulo"><img src="" alt="logo"> Chollo ░▒▓ Severo</div>
+        <div class="titulo"><img src={{ asset('./assets/images/logo.png') }} alt="logo"> Chollo ░▒▓ Severo</div>
         <nav>
             <ul>
                 <li> <a href={{ route('inicio') }}>Inicio</a></li>
-                <li>Nuevos</li>
-                <li>Destacados</li>
+                <li> <a href={{ route('novedades') }}>Nuevos</a></li>
+                <li><a href={{ route('destacado') }}>Destacados</a></li>
             </ul>
         </nav>
     </header>

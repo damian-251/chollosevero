@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chollo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller {
     
@@ -74,6 +75,32 @@ class PagesController extends Controller {
         $cholloActualizar->save();
 
         return back()->with('mensaje', 'Chollo editado correctamente');
+    }
+
+    function verDetalles($id){
+        $chollo = Chollo::findOrFail($id);
+        return view('chollos.detalles', compact('chollo'));
+    }
+
+    function meGusta($id) {
+        $cholloGustar = Chollo::findOrFail($id);
+        $cholloGustar->puntuacion++;
+
+        $cholloGustar->save();
+
+        return back();
+    }
+
+    function destacado() {
+        $chollos = Chollo::all()->sortByDesc('puntuacion');
+
+        return view('destacados', compact('chollos'));
+    }
+
+    function novedades() {
+        $chollos = DB::table('chollos') ->orderByDesc('created_at')->limit(3)->get();
+
+        return view('novedades', compact('chollos'));
     }
 
 }
