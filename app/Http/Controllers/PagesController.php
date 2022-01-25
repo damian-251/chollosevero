@@ -13,6 +13,10 @@ class PagesController extends Controller {
         return view("inicio", compact('chollos'));
     }
 
+    public function crearChollo() {
+        return view('chollos/addChollo');
+    }
+
     public function crear(Request $request) {
         //Validación de los datos
         $request -> validate([
@@ -21,21 +25,26 @@ class PagesController extends Controller {
             'url' => 'required',
             'categoria' => 'required',
             'precio' => 'required',
-            'precio_descuento' => 'required'
-          ]);
+            'precio_descuento' => 'required',
+            'imagen' => 'required|mimes:jpeg'
+        ]);
 
         $nuevoChollo = new Chollo();
 
         $nuevoChollo->titulo = $request->titulo;
-        $nuevoChollo->descripcion = $request->descripcion;
+        $nuevoChollo->descripcion = nl2br($request->descripcion);
         $nuevoChollo->url = $request->url;
         $nuevoChollo->categoria = $request->categoria;
         $nuevoChollo->precio = $request->precio;
         $nuevoChollo->precio_descuento = $request->precio_descuento;
-
+          
         $nuevoChollo->save();
 
-        return back() ->with('mensaje', 'Chollo agregado correctamente');
+        $image_name = $nuevoChollo->id . "-chollo-severo.jpg";
+            $path = base_path() . '/public/assets/images';
+            $request->file('imagen')->move($path,$image_name);  
+
+        return back()->with('mensaje', 'Chollo agregado correctamente');
 
     }
 
@@ -60,13 +69,15 @@ class PagesController extends Controller {
             'url' => 'required',
             'categoria' => 'required',
             'precio' => 'required',
-            'precio_descuento' => 'required'
+            'precio_descuento' => 'required',
+            'imagen' => 'mimes:jpeg'
           ]);
+
 
 
         $cholloActualizar = Chollo::findOrFail($id);
         $cholloActualizar->titulo = $request->titulo;
-        $cholloActualizar->descripcion = $request->descripcion;
+        $cholloActualizar->descripcion = nl2br($request->descripcion);
         $cholloActualizar->url = $request->url;
         $cholloActualizar->categoria = $request->categoria;
         $cholloActualizar->precio = $request->precio;
@@ -74,6 +85,15 @@ class PagesController extends Controller {
 
         $cholloActualizar->save();
 
+
+        //Si hemos adjuntado una imagen la editamos
+        if($request->file('imagen')) {
+
+            $image_name = $cholloActualizar->id . "-chollo-severo.jpg";
+            $path = base_path() . '/public/assets/images';
+            $request->file('imagen')->move($path,$image_name); 
+
+        }
         return back()->with('mensaje', 'Chollo editado correctamente');
     }
 
@@ -91,6 +111,19 @@ class PagesController extends Controller {
         return back();
     }
 
+    function noMeGusta($id) {
+        $cholloNoMeGusta = Chollo::findOrFail($id);
+
+        if($cholloNoMeGusta->puntuacion > 0) {
+            
+            $cholloNoMeGusta->puntuacion--;
+            $cholloNoMeGusta->save();
+
+        }
+
+        return back();
+    }
+
     function destacado() {
         $chollos = Chollo::all()->sortByDesc('puntuacion');
 
@@ -102,5 +135,7 @@ class PagesController extends Controller {
 
         return view('novedades', compact('chollos'));
     }
+
+    
 
 }

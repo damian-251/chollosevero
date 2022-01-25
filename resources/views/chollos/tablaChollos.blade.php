@@ -1,4 +1,4 @@
-<table border="1" class="table table-striped">
+<table border="1" class="table table-striped tabla-chollos">
     <thead>
         <tr>
         <th>Imagen</th>
@@ -16,19 +16,33 @@
             <tr>
                 <td> <img src={{ asset('assets/images/' . $chollo->id . '-chollo-severo.jpg') }} alt="imagen chollo" > </td>
                 <td> {{ date('d/m/Y H:i', strtotime($chollo->created_at)) }}</td>
-                <td>{{$chollo->puntuacion}}</td>
+                <td class="text-center">{{$chollo->puntuacion}}
+                    <div class="like-dislike">
+                        <form action={{ route('chollos.megusta', $chollo -> id) }} method="POST">
+                            @method('PUT') {{-- Para editar --}}
+                            @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
+                            <button class="btn btn-success" type="submit"> + </button>
+                        </form>
+                    
+                        <form action={{ route('chollos.noMeGusta', $chollo -> id) }} method="POST">
+                            @method('PUT') {{-- Para editar --}}
+                            @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
+                            <button type="submit" class="btn btn-danger"> - </button>
+                        </form>
+                    </div>
+                    </td>
                 <td>{{$chollo->titulo}}</td>
                 <td>{{$chollo->categoria}}</td>
                 <td>{{$chollo->precio}}€</td>
                 <td>{{$chollo->precio_descuento}}€</td>
                 <td>
-                    <a href="{{ route('chollos.detalles', $chollo->id) }}" class="btn btn-primary">Ver detalles</a>
-                    <form action={{ route('chollos.editar', $chollo -> id) }} method="POST" class="d-inline">
+                    <a href="{{ route('chollos.detalles', $chollo->id) }}" class="btn btn-primary btn-sm boton">Ver detalles</a>
+                    <form action={{ route('chollos.eliminar', $chollo -> id) }} method="POST" class="d-inline">
                         @method('DELETE')
                         @csrf
-                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                        <button class="btn btn-danger btn-sm boton" type="submit">Eliminar</button>
                     </form>
-                <a href="{{ route('chollos.editar', $chollo->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{{ route('chollos.editar', $chollo->id) }}" class="btn btn-warning btn-sm boton">Editar</a>
                 </td>
             </tr>
         @endforeach

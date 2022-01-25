@@ -1,5 +1,67 @@
-.titulo img {
-    width: 5rem;
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.logo-inicio img {
+    width: 40px;
+    display: inline-block;
+}
+
+.menu-principal {
+    margin-bottom: 3rem;
+}
+
+.menu-principal, footer {
+    background-color: #35373B;
+  
+}
+
+.menu-principal a {
+    color: white !important;
+}
+
+.menu-principal li:hover {
+    background-color: #5A5D62;
+}
+
+
+nav li {
+    padding: .5rem;
+}
+
+.boton {
+   display: block;
+   width: 9rem;
+   margin: .5rem auto;
+}
+
+.like-dislike {
+    display: flex;
+    margin-top: .5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.like-dislike button {
+    width: 3rem;
+}
+
+.contenido-chollo {
+    display: flex;
+}
+
+.contenido-chollo div:first-child {
+    width: 20%;
+}
+
+.contenido-chollo div:nth-child(2) {
+    width: 70%;
+}
+
+
+input, textarea {
+    margin: 1rem;
 }
 
 img {
@@ -8,4 +70,14 @@ img {
 
 .img-detalles {
     width: 20rem;
+}
+
+footer {
+    margin-top: 5rem;
+    color: white;
+}
+
+footer div {
+    padding: 2rem;
+   
 }

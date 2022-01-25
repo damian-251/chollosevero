@@ -7,11 +7,31 @@
 @section('contenidoMain')
     <h1>Detalles del chollo {{ $chollo->id }}</h1>
 
+    <div class="contenido-chollo">
+    <div class="imagen-chollo-like>">
+    <img class="img-detalles" src={{ asset('assets/images/' . $chollo->id . '-chollo-severo.jpg') }} alt="imagen del chollo">
+    <div class="like-dislike">
+        <form action={{ route('chollos.megusta', $chollo -> id) }} method="POST">
+            @method('PUT') {{-- Para editar --}}
+            @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
+            <button class="btn btn-success" type="submit">
+              +
+            </button>
+        </form>
+    
+        <form action={{ route('chollos.noMeGusta', $chollo -> id) }} method="POST">
+            @method('PUT') {{-- Para editar --}}
+            @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
+            <button type="submit" class="btn btn-danger"> - </button>
+        </form>
+    </div>
+    </div>
+    <div class="datos-chollo">
+
     <h2>Puntuación</h2>
     <p>{{ $chollo->puntuacion }}</p>
 
-    <h2>Imagen</h2>
-    <img class="img-detalles" src={{ asset('assets/images/' . $chollo->id . '-chollo-severo.jpg') }} alt="imagen del chollo">
+    
 
     <h2>Título</h2>
     <p>{{ $chollo-> titulo }}</p>
@@ -28,12 +48,9 @@
     <h2>Precio actual</h2>
     <p>{{ $chollo->precio_descuento }}</p>
 
-    <form action={{ route('chollos.megusta', $chollo -> id) }} method="POST">
-        @method('PUT') {{-- Para editar --}}
-        @csrf {{-- Cláusula para obtener un token de formulario al enviarlo --}}
-        <button class="btn btn-success" type="submit">
-          +
-        </button>
-    </form>
+    
+    
+    </div>
+    </div>
 
 @endsection
