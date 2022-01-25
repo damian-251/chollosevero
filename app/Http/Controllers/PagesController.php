@@ -24,8 +24,8 @@ class PagesController extends Controller {
             'descripcion' => 'required',
             'url' => 'required',
             'categoria' => 'required',
-            'precio' => 'required',
-            'precio_descuento' => 'required',
+            'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
+            'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'imagen' => 'required|mimes:jpeg'
         ]);
 
@@ -68,8 +68,8 @@ class PagesController extends Controller {
             'descripcion' => 'required',
             'url' => 'required',
             'categoria' => 'required',
-            'precio' => 'required',
-            'precio_descuento' => 'required',
+            'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
+            'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'imagen' => 'mimes:jpeg'
           ]);
 
