@@ -59,6 +59,17 @@ nav>div>ul {
    margin: .5rem auto;
 }
 
+.boton-chollo {
+    margin-top: 1.5rem;
+    background-color: #FF7900;
+    color: white;
+    border: none;
+}
+
+.boton-chollo:hover, .boton-chollo:active {
+    background-color: #FF9300 !important;
+}
+
 .like-dislike {
     display: flex;
     margin-top: .5rem;

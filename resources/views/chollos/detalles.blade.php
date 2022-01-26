@@ -46,7 +46,7 @@
     <h2>Precio actual</h2>
     <p class="p-descuento">{{ $chollo->precio_descuento }}€</p>
 
-    
+    <a href={{ $chollo->url }} target="_blank" class="btn btn-primary btn-lg boton-chollo"> Ir al chollo </a>
     
     </div>
     </div>
