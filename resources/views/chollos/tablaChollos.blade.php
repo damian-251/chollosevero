@@ -33,8 +33,8 @@
                     </td>
                 <td>{{$chollo->titulo}}</td>
                 <td>{{$chollo->categoria}}</td>
-                <td>{{$chollo->precio}}€</td>
-                <td>{{$chollo->precio_descuento}}€</td>
+                <td class="p-anterior">{{$chollo->precio}}€</td>
+                <td class="p-descuento">{{$chollo->precio_descuento}}€</td>
                 <td>
                     <a href="{{ route('chollos.detalles', $chollo->id) }}" class="btn btn-primary btn-sm boton">Ver detalles</a>
                     <form action={{ route('chollos.eliminar', $chollo -> id) }} method="POST" class="d-inline">

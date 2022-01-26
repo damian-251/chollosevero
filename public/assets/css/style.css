@@ -25,9 +25,32 @@ main {
     background-color: #5A5D62;
 }
 
+nav>div>a {
+    font-size: 2.1rem;
+}
 
 nav li {
     padding: .5rem;
+}
+
+nav>div>ul {
+    margin-left: 1.2rem !important;
+}
+
+.p-anterior{
+    text-decoration: line-through;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #8f949b;
+
+
+}
+
+.p-descuento {
+    font-size: 2.125rem;
+    color: #ff7900;
+    font-weight: 700
+
 }
 
 .boton {
@@ -81,3 +104,4 @@ footer div {
     padding: 2rem;
    
 }
+

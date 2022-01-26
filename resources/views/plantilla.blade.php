@@ -14,23 +14,23 @@
     <header>
         <nav class="navbar navbar-default menu-principal">
             <div class="container-fluid">
-            <div class="navbar-header logo-inicio">
-                <img src={{ asset('./assets/images/logo.png') }} alt="logo">
-                <a class="navbar-brand" href={{ route('inicio') }}>Chollo ░▒▓ Severo</a>     
-            </div>
-            <ul class="nav navbar-nav">
-                <li> <a href={{ route('inicio') }}>Inicio</a></li>
-                <li> <a href={{ route('novedades') }}>Nuevos</a></li>
-                <li><a href={{ route('destacado') }}>Destacados</a></li>
-                <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
-            </ul>
+                <a class="navbar-header logo-inicio" href={{ route('inicio') }}>
+                    
+                    <img src={{ asset('./assets/images/logo.png') }} alt="logo">
+                     Chollo ░▒▓ Severo   
+                </a>
+                <ul class="nav navbar-nav">
+                    <li> <a href={{ route('inicio') }}>Inicio</a></li>
+                    <li> <a href={{ route('novedades') }}>Nuevos</a></li>
+                    <li><a href={{ route('destacado') }}>Destacados</a></li>
+                    <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
+                </ul>
             </div>
         </nav>
 
     </header>
     <main>
         @yield('contenidoMain')    
-        <script src="{{ asset('assets/js/main.js') }}"></script>
     </main>
     <footer>
         <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">

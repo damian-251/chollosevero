@@ -22,7 +22,7 @@ class PagesController extends Controller {
         $request -> validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'url' => 'required',
+            'url' => 'required|url',
             'categoria' => 'required',
             'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
@@ -32,7 +32,7 @@ class PagesController extends Controller {
         $nuevoChollo = new Chollo();
 
         $nuevoChollo->titulo = $request->titulo;
-        $nuevoChollo->descripcion = nl2br($request->descripcion);
+        $nuevoChollo->descripcion = $request->descripcion;
         $nuevoChollo->url = $request->url;
         $nuevoChollo->categoria = $request->categoria;
         $nuevoChollo->precio = $request->precio;
@@ -66,7 +66,7 @@ class PagesController extends Controller {
         $request -> validate([
             'titulo' => 'required',
             'descripcion' => 'required',
-            'url' => 'required',
+            'url' => 'required|url',
             'categoria' => 'required',
             'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
@@ -77,7 +77,7 @@ class PagesController extends Controller {
 
         $cholloActualizar = Chollo::findOrFail($id);
         $cholloActualizar->titulo = $request->titulo;
-        $cholloActualizar->descripcion = nl2br($request->descripcion);
+        $cholloActualizar->descripcion = $request->descripcion;
         $cholloActualizar->url = $request->url;
         $cholloActualizar->categoria = $request->categoria;
         $cholloActualizar->precio = $request->precio;
@@ -125,17 +125,15 @@ class PagesController extends Controller {
     }
 
     function destacado() {
-        $chollos = Chollo::all()->sortByDesc('puntuacion');
+        $chollos = DB::table('chollos')->orderByDesc('puntuacion')->limit(4)->get();
 
         return view('destacados', compact('chollos'));
     }
 
     function novedades() {
-        $chollos = DB::table('chollos') ->orderByDesc('created_at')->limit(3)->get();
+        $chollos = DB::table('chollos') ->orderByDesc('created_at')->limit(4)->get();
 
         return view('novedades', compact('chollos'));
     }
-
-    
 
 }

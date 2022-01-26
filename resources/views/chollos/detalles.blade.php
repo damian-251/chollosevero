@@ -31,22 +31,20 @@
     <h2>Puntuación</h2>
     <p>{{ $chollo->puntuacion }}</p>
 
-    
-
     <h2>Título</h2>
     <p>{{ $chollo-> titulo }}</p>
 
     <h2>Descripión</h2>
-    <p>{{ $chollo->descripcion }}</p>
-
+    <p><?=$descrip = nl2br($chollo->descripcion);?></p>
+   
     <h2>Categoría</h2>
     <p>{{ $chollo->categoria }}</p>
 
     <h2>Precio anterior</h2>
-    <p>{{ $chollo->precio }}</p>
+    <p class="p-anterior">{{ $chollo->precio }}€</p>
 
     <h2>Precio actual</h2>
-    <p>{{ $chollo->precio_descuento }}</p>
+    <p class="p-descuento">{{ $chollo->precio_descuento }}€</p>
 
     
     
