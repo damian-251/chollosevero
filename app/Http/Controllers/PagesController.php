@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Chollo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller {
     
     public function inicio() {
-        $chollos = Chollo::all();
+        $chollos = Chollo::paginate(5);
         return view("inicio", compact('chollos'));
     }
 
