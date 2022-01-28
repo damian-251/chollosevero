@@ -35,7 +35,7 @@
     
     <input type="text" name="precio_descuento" pattern="[0-9]+(\.[0-9][0-9]?)?" placeholder="Nuevo precio" class="form-control mb-2" value="{{old('precio_descuento')}}" required>
     <label for="imagen">Imagen en formato JPEG</label>
-    <input type="file"  name="imagen">
+    <input type="file"  name="imagen" required>
     <button class="btn btn-primary btn-block" type="submit">
       Añadir nuevo chollo
     </button>
