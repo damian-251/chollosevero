@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get("/",[PagesController::class, "inicio"]) ->name("inicio");
-Route::get("chollos/addChollo",[PagesController::class, 'crearChollo']) ->name('chollos.creacion');
+
+//Crear chollo, para la vista de crear chollos necesitamos inicar sesion
+Route::get("chollos/addChollo",[HomeController::class, 'crearChollo']) ->name('chollos.creacion');
 Route::post("chollos/addChollo", [PagesController::class, 'crear'])->name('chollos.crear');
+
+//Eliminar chollo
 Route::delete('eliminar/{id}', [PagesController::class, "eliminar"])->name('chollos.eliminar');
 
 //Edición de chollo
@@ -34,3 +40,6 @@ Route::put('chollos/detalles/dislike/{id}', [PagesController::class, 'noMeGusta'
 Route::get('destacados', [PagesController::class, 'destacado'])->name('destacado');
 
 Route::get('novedades', [PagesController::class, 'novedades'])->name('novedades');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

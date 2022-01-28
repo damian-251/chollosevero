@@ -15,9 +15,7 @@ class PagesController extends Controller {
         return view("inicio", compact('chollos'));
     }
 
-    public function crearChollo() {
-        return view('chollos/addChollo');
-    }
+    
 
     public function crear(Request $request) {
         //Validación de los datos
@@ -74,8 +72,6 @@ class PagesController extends Controller {
             'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'imagen' => 'mimes:jpeg'
           ]);
-
-
 
         $cholloActualizar = Chollo::findOrFail($id);
         $cholloActualizar->titulo = $request->titulo;
