@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chollo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Aquí ponemos las vistas que requieran registro
+ */
 class HomeController extends Controller {
     /**
      * Create a new controller instance.
@@ -27,5 +31,11 @@ class HomeController extends Controller {
     public function crearChollo() {
         $user = Auth::user();
         return view('chollos/addChollo', compact('user'));
+    }
+
+    public function editar($id) {
+        $chollo = Chollo::findOrFail($id);
+      
+        return view('chollos.editar', compact('chollo'));
     }
 }

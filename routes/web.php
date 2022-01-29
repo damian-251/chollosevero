@@ -26,7 +26,7 @@ Route::post("chollos/addChollo", [PagesController::class, 'crear'])->name('choll
 Route::delete('eliminar/{id}', [PagesController::class, "eliminar"])->name('chollos.eliminar');
 
 //Edición de chollo
-Route::get('chollos/editar/{id}', [ PagesController::class, 'editar' ]) -> name('chollos.editar')->where('id', '[0-9]+');
+Route::get('chollos/editar/{id}', [ HomeController::class, 'editar' ]) -> name('chollos.editar')->where('id', '[0-9]+');
 Route::put('chollos/editar/{id}', [PagesController::class, 'actualizar']) -> name('chollos.actualizar');
 
 //Ver detalles de chollos

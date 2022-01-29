@@ -17,6 +17,14 @@ main {
   
 }
 
+.menu-chollos {
+    width: fit-content;
+}
+
+.login-register {
+    float: right;
+}
+
 .menu-principal a {
     color: white !important;
 }

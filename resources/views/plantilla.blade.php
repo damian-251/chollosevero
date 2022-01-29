@@ -13,7 +13,7 @@
 <body>
     <header>
         <nav class="navbar navbar-default menu-principal">
-            <div class="container-fluid">
+            <div class="menu-chollos">
                 <a class="navbar-header logo-inicio" href={{ route('inicio') }}>
                     
                     <img src={{ asset('./assets/images/logo.png') }} alt="logo">
@@ -26,6 +26,10 @@
                     <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
                 </ul>
             </div>
+                <ul class="nav navbar-nav float-right login-register">
+                    <li> <a href={{ route('register') }}>Registrarse</a></li>
+                    <li> <a href={{ route('login') }}>Iniciar sesión</a></li>
+                </ul>        
         </nav>
 
     </header>
