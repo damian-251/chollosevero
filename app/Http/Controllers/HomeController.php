@@ -35,7 +35,9 @@ class HomeController extends Controller {
 
     public function editar($id) {
         $chollo = Chollo::findOrFail($id);
-      
+        
         return view('chollos.editar', compact('chollo'));
     }
+
+
 }

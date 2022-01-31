@@ -10,6 +10,6 @@
     <div class="text-center">
         {{ $chollos->links() }}
     </div>
-        
+
 
 @endsection

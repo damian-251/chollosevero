@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chollo;
+use Faker\Generator as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
@@ -29,6 +30,7 @@ class PagesController extends Controller {
             'imagen' => 'required|mimes:jpeg'
         ]);
 
+
         $nuevoChollo = new Chollo();
 
         $nuevoChollo->titulo = $request->titulo;
@@ -41,9 +43,9 @@ class PagesController extends Controller {
         $nuevoChollo->save();
 
         $image_name = $nuevoChollo->id . "-chollo-severo.jpg";
-            $path = base_path() . '/public/assets/images';
-            $request->file('imagen')->move($path,$image_name);  
-
+        $path = base_path() . '/public/assets/images';
+        $request->file('imagen')->move($path,$image_name);  
+        
         return back()->with('mensaje', 'Chollo agregado correctamente');
 
     }
@@ -54,11 +56,7 @@ class PagesController extends Controller {
         return back()->with('mensaje', 'Chollo eliminado correctamente');
     }
 
-    public function editar($id) {
-        $chollo = Chollo::findOrFail($id);
-      
-        return view('chollos.editar', compact('chollo'));
-    }
+    
 
     public function actualizar(Request $request, $id) {
 
