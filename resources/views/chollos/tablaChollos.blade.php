@@ -32,7 +32,8 @@
                     </div>
                     </td>
                 <td>{{$chollo->titulo}}</td>
-                <td>{{$chollo->categoria}}</td>
+                <td>
+                    {{$chollo->categoria->nombre}}</td> {{--Aquí relacionamos la clave ajena con el nombre--}}
                 <td class="p-anterior">{{$chollo->precio}}€</td>
                 <td class="p-descuento">{{$chollo->precio_descuento}}€</td>
                 <td>

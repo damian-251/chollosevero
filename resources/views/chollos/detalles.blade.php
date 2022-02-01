@@ -32,13 +32,13 @@
     <p>{{ $chollo->puntuacion }}</p>
 
     <h2>Título</h2>
-    <p>{{ $chollo-> titulo }}</p>
+    <p>{{ $chollo->titulo }}</p>
 
     <h2>Descripión</h2>
     <p><?=$descrip = nl2br($chollo->descripcion);?></p>
    
     <h2>Categoría</h2>
-    <p>{{ $chollo->categoria }}</p>
+    <p>{{ $chollo->categoria->nombre }}</p>
 
     <h2>Precio anterior</h2>
     <p class="p-anterior">{{ $chollo->precio }}€</p>

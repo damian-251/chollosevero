@@ -17,4 +17,8 @@ class Chollo extends Model {
         'precio_descuento'
     ];
 
+    function categoria() {
+        return $this -> belongsTo(Categoria::class);
+    }
+
 }

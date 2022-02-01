@@ -13,6 +13,7 @@ class PagesController extends Controller {
     
     public function inicio() {
         $chollos = Chollo::paginate(5);
+
         return view("inicio", compact('chollos'));
     }
 

@@ -15,7 +15,7 @@ class CholloSeeder extends Seeder {
      */
     public function run() {
 
-        $numeroCampos = 20;
+        $numeroCampos = 100;
 
         for ($i = 0 ; $i < $numeroCampos ; $i++) {
 
@@ -27,7 +27,8 @@ class CholloSeeder extends Seeder {
             'url' => $faker->url(),
             'precio' => $faker->randomFloat(2, 0, 500),
             'precio_descuento' => $faker->randomFloat(2, 20, 500),
-            'categoria' => $faker->word(),
+            'usuario_id' => $faker->randomDigitNot(0),
+            'categoria_id' => $faker->numberBetween(1,5),
             'created_at' => date('Y-m-d H:i:s')
         ]);
             //Generamos una imagen por defecto para el chollo
