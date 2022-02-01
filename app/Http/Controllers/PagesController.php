@@ -93,7 +93,7 @@ class PagesController extends Controller {
         return back()->with('mensaje', 'Chollo editado correctamente');
     }
 
-    function verDetalles($id){
+    function verDetalles($id = 1){
         $chollo = Chollo::findOrFail($id);
         return view('chollos.detalles', compact('chollo'));
     }

@@ -30,7 +30,7 @@ Route::get('chollos/editar/{id}', [ HomeController::class, 'editar' ]) -> name('
 Route::put('chollos/editar/{id}', [PagesController::class, 'actualizar']) -> name('chollos.actualizar');
 
 //Ver detalles de chollos
-Route::get('chollos/detalles/{id}', [PagesController::class, 'verDetalles'])->name('chollos.detalles')->where('id', '[0-9]+');
+Route::get('chollos/detalles/{id?}', [PagesController::class, 'verDetalles'])->name('chollos.detalles')->where('id', '[0-9]+');
 
 //Botón me gusta y no me gusta
 Route::put('chollos/detalles/like/{id}', [PagesController::class, 'meGusta'])->name('chollos.megusta');
