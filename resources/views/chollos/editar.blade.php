@@ -30,7 +30,7 @@
     <input type="text" name="titulo" placeholder="Título del chollo" class="form-control mb-2" value="{{$chollo->titulo}}" autofocus required>
     <textarea type="text" name="descripcion" placeholder="Descripción del chollo" class="form-control mb-2" required>{{$chollo->descripcion}}</textarea>
     <input type="url" name="url" placeholder="URL del chollo" class="form-control mb-2" value="{{$chollo->url}}" required>
-    <input type="text" name="categoria" placeholder="Categoría del chollo" class="form-control mb-2" value="{{$chollo->categoria}}" required>
+    <input type="text" name="categoria" placeholder="Categoría del chollo" class="form-control mb-2" value="{{$chollo->categoria->nombre}}" required>
     <input type="text" name="precio" placeholder="Precio anterior" pattern="[0-9]+(\.[0-9][0-9]?)?" class="form-control mb-2" value="{{$chollo->precio}}" required>
     <input type="text" name="precio_descuento" pattern="[0-9]+(\.[0-9][0-9]?)?" placeholder="Nuevo precio" class="form-control mb-2" value="{{$chollo->precio_descuento}}" required>
     <label for="imagen">Imagen en formato JPEG (no subir ninguna para mantener la original)</label>

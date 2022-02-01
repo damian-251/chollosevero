@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CholloController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Auth;
@@ -19,14 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get("/",[PagesController::class, "inicio"]) ->name("inicio");
 
 //Crear chollo, para la vista de crear chollos necesitamos inicar sesion
-Route::get("chollos/addChollo",[HomeController::class, 'crearChollo']) ->name('chollos.creacion');
-Route::post("chollos/addChollo", [PagesController::class, 'crear'])->name('chollos.crear');
+Route::get("chollos/add-chollo",[CholloController::class, 'crearChollo']) ->name('chollos.creacion');
+Route::post("chollos/add-chollo", [PagesController::class, 'crear'])->name('chollos.crear');
 
 //Eliminar chollo
-Route::delete('eliminar/{id}', [PagesController::class, "eliminar"])->name('chollos.eliminar');
+Route::delete('eliminar/{id}', [CholloController::class, "eliminar"])->name('chollos.eliminar');
 
 //Edición de chollo
-Route::get('chollos/editar/{id}', [ HomeController::class, 'editar' ]) -> name('chollos.editar')->where('id', '[0-9]+');
+Route::get('chollos/editar/{id}', [CholloController::class, 'editar' ]) -> name('chollos.editar')->where('id', '[0-9]+');
 Route::put('chollos/editar/{id}', [PagesController::class, 'actualizar']) -> name('chollos.actualizar');
 
 //Ver detalles de chollos
@@ -43,8 +44,8 @@ Route::get('destacados', [PagesController::class, 'destacado'])->name('destacado
 Route::get('novedades', [PagesController::class, 'novedades'])->name('novedades');
 
 //Cerrar sesión
-Route::post('logout', [HomeController::class, 'logout'])->name('logout');
+Route::post('logout', [CholloController::class, 'logout'])->name('logout');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\PagesController::class, 'inicio'])->name('home');
+Route::get('/home', [PagesController::class, 'inicio'])->name('home');

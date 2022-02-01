@@ -50,13 +50,6 @@ class PagesController extends Controller {
         return back()->with('mensaje', 'Chollo agregado correctamente');
 
     }
-
-    function eliminar($id) {
-        $cholloEliminar = Chollo::findOrFail($id);
-        $cholloEliminar->delete();
-        return back()->with('mensaje', 'Chollo eliminado correctamente');
-    }
-
     
 
     public function actualizar(Request $request, $id) {
@@ -76,6 +69,7 @@ class PagesController extends Controller {
         $cholloActualizar->titulo = $request->titulo;
         $cholloActualizar->descripcion = $request->descripcion;
         $cholloActualizar->url = $request->url;
+        //TODO: Habría que arreglarlo para recibir el id de sea categoría a partir del nombre que le hemos proporcionado
         $cholloActualizar->categoria = $request->categoria;
         $cholloActualizar->precio = $request->precio;
         $cholloActualizar->precio_descuento = $request->precio_descuento;

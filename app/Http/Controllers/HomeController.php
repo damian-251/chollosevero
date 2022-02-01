@@ -27,25 +27,4 @@ class HomeController extends Controller {
     public function inicio()     {
         return view('inicio');
     }
-
-    public function crearChollo() {
-        $user = Auth::user();
-        return view('chollos/addChollo', compact('user'));
-    }
-
-    public function editar($id) {
-        $chollo = Chollo::findOrFail($id);
-        
-        return view('chollos.editar', compact('chollo'));
-    }
-
-    public function logout(Request $request) {
-
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('inicio');
-    }
-
 }
