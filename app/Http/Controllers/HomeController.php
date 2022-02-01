@@ -24,8 +24,8 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()     {
-        return view('home');
+    public function inicio()     {
+        return view('inicio');
     }
 
     public function crearChollo() {
@@ -39,5 +39,13 @@ class HomeController extends Controller {
         return view('chollos.editar', compact('chollo'));
     }
 
+    public function logout(Request $request) {
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('inicio');
+    }
 
 }

@@ -39,7 +39,12 @@ Route::put('chollos/detalles/dislike/{id}', [PagesController::class, 'noMeGusta'
 //Vista de chollos destacados
 Route::get('destacados', [PagesController::class, 'destacado'])->name('destacado');
 
+//Visita de las novedades
 Route::get('novedades', [PagesController::class, 'novedades'])->name('novedades');
+
+//Cerrar sesión
+Route::post('logout', [HomeController::class, 'logout'])->name('logout');
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\PagesController::class, 'inicio'])->name('home');

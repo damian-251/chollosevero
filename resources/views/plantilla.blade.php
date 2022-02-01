@@ -26,10 +26,19 @@
                     <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
                 </ul>
             </div>
+            
                 <ul class="nav navbar-nav float-right login-register">
-                    <li> <a href={{ route('register') }}>Registrarse</a></li>
-                    <li> <a href={{ route('login') }}>Iniciar sesión</a></li>
-                </ul>        
+                @if (!Auth::check()) {{-- Si no hay usuario mostramos registrarse e iniciar sesión --}}
+                <li> <a href={{ route('register') }}>Registrarse</a></li>
+                <li> <a href={{ route('login') }}>Iniciar sesión</a></li>
+                @else  {{-- Si hay usuario mostramos el nombre --}}
+                    <li class="logged-user"> <a href=""> Bienvenido/a {{auth()->user()->name}}</a></li>
+                    <li class="logged-user"><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a> </li>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @endif
+                </ul>                        
         </nav>
 
     </header>

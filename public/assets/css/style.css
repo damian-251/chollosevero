@@ -33,6 +33,9 @@ main {
     background-color: #5A5D62;
 }
 
+.logged-user {
+    color: white;
+}
 nav>div>a {
     font-size: 2.1rem;
 }
