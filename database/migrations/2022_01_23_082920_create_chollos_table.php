@@ -23,8 +23,7 @@ class CreateChollosTable extends Migration
             $table->float("precio");
             $table->float("precio_descuento");
             $table->boolean("disponible")->default(true);
-            $table->bigInteger('usuario_id')->nullable(); //Añadimos el id del usuario que ha creado el chollo
-            $table->bigInteger('categoria_id')->nullable(); //Cada chollos tendrá una categoría (primer nivel)
+            $table->bigInteger('usuario_id')->nullable();
         });
     }
 

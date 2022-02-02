@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Página principal
 Route::get("/",[PagesController::class, "inicio"]) ->name("inicio");
 
 //Crear chollo, para la vista de crear chollos necesitamos inicar sesion
@@ -48,4 +49,5 @@ Route::post('logout', [CholloController::class, 'logout'])->name('logout');
 
 Auth::routes();
 
+//Aquí redirige tras cerrar sesión o iniciar, no recuerdo
 Route::get('/home', [PagesController::class, 'inicio'])->name('home');

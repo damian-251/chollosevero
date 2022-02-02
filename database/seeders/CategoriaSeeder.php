@@ -13,7 +13,7 @@ class CategoriaSeeder extends Seeder {
      */
     public function run()   {
 
-        $categorias = ['videojuegos', 'viajes', 'alimentacion', 'comida', 'informatica'];
+        $categorias = ['videojuegos', 'viajes', 'alimentacion', 'comida', 'informatica', 'transporte', 'conduccion', 'salud', 'belleza'];
 
 
         foreach ($categorias as $categoria) {

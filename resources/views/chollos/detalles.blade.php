@@ -38,7 +38,11 @@
     <p><?=$descrip = nl2br($chollo->descripcion);?></p>
    
     <h2>Categoría</h2>
-    <p>{{ $chollo->categoria->nombre }}</p>
+    <p> 
+        @foreach ($chollo->categorias as $categoria)
+            {{ $categoria->nombre }} <br>
+        @endforeach
+    </p>
 
     <h2>Precio anterior</h2>
     <p class="p-anterior">{{ $chollo->precio }}€</p>
