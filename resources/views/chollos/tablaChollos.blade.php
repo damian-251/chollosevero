@@ -33,7 +33,10 @@
                     </td>
                 <td>{{$chollo->titulo}}</td>
                 <td>
-                    {{$chollo->categoria->nombre}}</td> {{--Aquí relacionamos la clave ajena con el nombre--}}
+                    @foreach ($chollo->categorias as $categoria)
+                    {{ $categoria->nombre }} <br>
+                    @endforeach   
+                </td> 
                 <td class="p-anterior">{{$chollo->precio}}€</td>
                 <td class="p-descuento">{{$chollo->precio_descuento}}€</td>
                 <td>
