@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chollo;
+use COM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,8 +28,10 @@ class CholloController extends Controller {
 
     public function editar($id) {
         $chollo = Chollo::findOrFail($id);
-        
-        return view('chollos.editar', compact('chollo'));
+        if (Auth::id() == $chollo->usuario_id ) {
+            return view('chollos.editar', compact('chollo'));
+        }
+        return redirect('/');
     }
 
     public function logout(Request $request) {

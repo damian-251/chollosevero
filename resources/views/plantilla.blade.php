@@ -26,7 +26,6 @@
                     <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
                 </ul>
             </div>
-            
                 <ul class="nav navbar-nav float-right login-register">
                 @if (!Auth::check()) {{-- Si no hay usuario mostramos registrarse e iniciar sesión --}}
                 <li> <a href={{ route('register') }}>Registrarse</a></li>
@@ -40,7 +39,6 @@
                 @endif
                 </ul>                        
         </nav>
-
     </header>
     <main>
         @yield('contenidoMain')    

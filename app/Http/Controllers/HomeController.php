@@ -24,7 +24,7 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function inicio()     {
+    public function inicio() {
         return view('inicio');
     }
 }
