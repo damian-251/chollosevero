@@ -14,7 +14,7 @@ use PharIo\Manifest\Author;
 class PagesController extends Controller {
     
     public function inicio() {
-        $chollos = Chollo::paginate(5);
+        $chollos = Chollo::paginate(7);
 
         return view("inicio", compact('chollos'));
     }

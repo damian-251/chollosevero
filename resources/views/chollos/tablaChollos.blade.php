@@ -41,7 +41,7 @@
                 <td class="p-descuento">{{$chollo->precio_descuento}}€</td>
                 <td>
                     <a href="{{ route('chollos.detalles', $chollo->id) }}" class="btn btn-primary btn-sm boton">Ver detalles</a>
-                    @if (auth()->user()->id == $chollo->usuario_id) {{-- Si coinciden mostramos el botón editar --}}
+                    @if (Auth::check() && auth()->user()->id == $chollo->usuario_id) {{-- Si coinciden mostramos el botón editar --}}
                     <form action={{ route('chollos.eliminar', $chollo -> id) }} method="POST" class="d-inline">
                         @method('DELETE')
                         @csrf
