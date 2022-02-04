@@ -3,19 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chollo;
-use Faker\Generator as Faker;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use PharIo\Manifest\Author;
 
 class PagesController extends Controller {
     
     public function inicio() {
-        $chollos = Chollo::paginate(7);
-
+        //$chollos = Chollo::paginate(7);
+        $chollos = Chollo::with('categorias')->paginate(7);
+        //Mirar Eager loading, provocamos que la lectura se realice antes
+        //Cuando tengamos que recuperar datos de las relaciones
         return view("inicio", compact('chollos'));
     }
 
@@ -48,11 +46,19 @@ class PagesController extends Controller {
 
 
         //Le asignamos la categoría al chollo 
-        DB::table('categoria_chollo')->insert([
-            'chollo_id' => $nuevoChollo->id,
-            'categoria_id' => DB::table('categorias')->where('nombre', $request->categoria)->value('id'),
-            'created_at' => date('Y-m-d H:i:s')
-        ]);
+
+        $arrayCategorias = explode(", ", $request->categoria);
+        //La categoría la convertimos en array 
+        
+        //la recorremos para ir insertando los campos en la table
+        foreach ($arrayCategorias as $categoria) {
+            DB::table('categoria_chollo')->insert([
+                'chollo_id' => $nuevoChollo->id,
+                'categoria_id' => DB::table('categorias')->where('nombre', $categoria)->value('id'),
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+        }
+        //Habría que limitar el número de categorías que se pueden enviar
 
 
         $image_name = $nuevoChollo->id . "-chollo-severo.jpg";
@@ -60,7 +66,6 @@ class PagesController extends Controller {
         $request->file('imagen')->move($path,$image_name);  
         
         return back()->with('mensaje', 'Chollo agregado correctamente');
-
     }
     
 

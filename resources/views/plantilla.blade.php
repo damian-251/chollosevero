@@ -32,7 +32,9 @@
                 <li> <a href={{ route('login') }}>Iniciar sesión</a></li>
                 @else  {{-- Si hay usuario mostramos el nombre --}}
                     <li class="logged-user"> <a href=""> Bienvenido/a {{auth()->user()->name}}</a></li>
-                    <li class="logged-user"><a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a> </li>
+                    {{--Se mostrarán los chollos del usuario--}}
+                    <li class="logged-user"> <a href="#"> Mis chollos</a></li>
+                    <li class="logged-user"><a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Cerrar sesión</a> </li>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
