@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CholloController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,3 +50,6 @@ Auth::routes();
 
 //Aquí redirige tras cerrar sesión o iniciar, no recuerdo
 Route::get('/home', [PagesController::class, 'inicio'])->name('home');
+
+//Sección Mis Chollos
+Route::get('chollos/mischollos', [CholloController::class, 'listarMisChollos'])->name('mis.chollos');

@@ -51,7 +51,7 @@
     <p class="p-descuento">{{ $chollo->precio_descuento }}€</p>
 
     <h2>Chollo agregado por: </h2>
-    <p>{{ $chollo->usuario_id }}</p>
+    <p>{{ $chollo->user->name }}</p>
 
     <a href={{ $chollo->url }} target="_blank" class="btn btn-primary btn-lg boton-chollo"> Ir al chollo </a>
 

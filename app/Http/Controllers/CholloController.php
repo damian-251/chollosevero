@@ -50,4 +50,11 @@ class CholloController extends Controller {
         return back()->with('mensaje', 'Chollo eliminado correctamente');
     }
     //
+
+    //Lista los chollos del usuario
+    function listarMisChollos() {
+        $chollos = Chollo::where('usuario_id', Auth::id())->get(); //Chollos que tengan la id del usuario actual
+        $usuario = Auth::user()->name;
+        return view('chollos/mischollos', compact('chollos', 'usuario'));
+    }
 }

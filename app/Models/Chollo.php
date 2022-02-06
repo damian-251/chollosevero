@@ -17,7 +17,11 @@ class Chollo extends Model {
         'precio_descuento'
     ];
 
-    function categorias() {
+    function user(){ //Un chollo pertenece a un usuario
+        return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    function categorias() { //Un chollo tiene muchas categorías
         return $this -> belongsToMany(Categoria::class);
     }
 
