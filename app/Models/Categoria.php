@@ -11,5 +11,5 @@ class Categoria extends Model {
     //Relación muchos a muchos
     public function chollos() {
         return $this->belongsToMany(Chollo::class);
-    }
+    } 
 }

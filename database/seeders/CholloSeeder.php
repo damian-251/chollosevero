@@ -20,7 +20,6 @@ class CholloSeeder extends Seeder {
         for ($i = 0 ; $i < $numeroCampos ; $i++) {
 
             $faker = \Faker\Factory::create();
-            
             $id = DB::table('chollos')->insertGetId([
             'titulo' => $faker->sentence(),
             'descripcion' => $faker->paragraph(),
