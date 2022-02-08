@@ -47,4 +47,8 @@ class User extends Authenticatable {
     public function chollos() {
         return $this->hasMany(Chollo::class, 'usuario_id');
     }
+
+    public function chollos_like() {
+        return $this->belongsToMany(Chollo::class);
+    }
 }

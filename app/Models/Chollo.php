@@ -22,9 +22,13 @@ class Chollo extends Model {
     }
 
     function categorias() { //Un chollo tiene muchas categorías
-        return $this -> belongsToMany(Categoria::class);
+        return $this -> belongsToMany(Categoria::class, 'categoria_chollo');
     }
 
+    //Como hay dos relaciones muchos a muchos indicamos la tabla pivote
+    function usuariosLike() {
+        return $this->belongsToMany(User::class, 'chollo_user');
+    }
     
 
 }

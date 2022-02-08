@@ -108,27 +108,6 @@ class PagesController extends Controller {
         return view('chollos.detalles', compact('chollo'));
     }
 
-    function meGusta($id) {
-        $cholloGustar = Chollo::findOrFail($id);
-        $cholloGustar->puntuacion++;
-
-        $cholloGustar->save();
-
-        return back();
-    }
-
-    function noMeGusta($id) {
-        $cholloNoMeGusta = Chollo::findOrFail($id);
-
-        if($cholloNoMeGusta->puntuacion > 0) {
-            
-            $cholloNoMeGusta->puntuacion--;
-            $cholloNoMeGusta->save();
-
-        }
-
-        return back();
-    }
 
     function destacado() {
         //$chollos = DB::table('chollos')->orderByDesc('puntuacion')->limit(4)->get();
