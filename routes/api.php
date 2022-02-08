@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CholloApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/chollos', [CholloApiController::class, 'index']); //api/chollos
+Route::get('/chollo/{id?}', [CholloApiController::class, 'listarChollo']); //Jason con un solo chollo
+Route::get('/random', [CholloApiController::class, 'cholloRandom']); //Obtener un chollo aleatorio

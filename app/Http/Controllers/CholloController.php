@@ -92,7 +92,7 @@ class CholloController extends Controller {
             if ($cholloNo->usuariosLike()->where('user_id', Auth::id())->first() != null) {
                 //Si no está vacío quiere decir que el usuario ya ha votado algún chollo
                 return back();
-            }
+            } 
 
             //Si no está en la tabla lo añadimos a la tabla intermedia y aumentamos la puntuación
             DB::table('chollo_user')->insert(['user_id'=>Auth::id(), 'chollo_id'=> $id]);
