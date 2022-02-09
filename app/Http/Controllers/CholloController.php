@@ -73,9 +73,12 @@ class CholloController extends Controller {
         }
 
         //Si no está en la tabla lo añadimos a la tabla intermedia y aumentamos la puntuación
-        DB::table('chollo_user')->insert(['user_id'=>Auth::id(), 'chollo_id'=> $id]);
+        // DB::table('chollo_user')->insert(['user_id'=>Auth::id(), 'chollo_id'=> $id]);
         $cholloGustar->puntuacion++;
         $cholloGustar->save();
+
+        //Añadimos mediante el método de eloqent a la tabla pivote
+        $cholloGustar->usuariosLike()->attach(Auth::id());
 
         return back();
     }
@@ -94,10 +97,14 @@ class CholloController extends Controller {
                 return back();
             } 
 
-            //Si no está en la tabla lo añadimos a la tabla intermedia y aumentamos la puntuación
-            DB::table('chollo_user')->insert(['user_id'=>Auth::id(), 'chollo_id'=> $id]);
+            // //Si no está en la tabla lo añadimos a la tabla intermedia y aumentamos la puntuación
+            // DB::table('chollo_user')->insert(['user_id'=>Auth::id(), 'chollo_id'=> $id]);
             $cholloNo->puntuacion--;
             $cholloNo->save();
+
+            //Añadimos a la table pivote mediante eloquent
+            $cholloNo->usuariosLike()->attach(Auth::id());
+
 
         }
         

@@ -49,6 +49,6 @@ class User extends Authenticatable {
     }
 
     public function chollos_like() {
-        return $this->belongsToMany(Chollo::class);
+        return $this->belongsToMany(Chollo::class)->withTimestamps();
     }
 }

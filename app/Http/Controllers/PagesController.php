@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Chollo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,7 +87,22 @@ class PagesController extends Controller {
         $cholloActualizar->titulo = $request->titulo;
         $cholloActualizar->descripcion = $request->descripcion;
         $cholloActualizar->url = $request->url;
-        $cholloActualizar->categoria = $request->categoria;
+
+        //$cholloActualizar->categoria = $request->categoria; Cuando solo había una categoría
+
+        //Recogemos en un array los datos recibidos de la categoría Ej: videojuegos, salud
+        $arrayCategorias = explode(", ", $request->categoria);
+
+        //Añadimos cada categoria y el chollo a la que pertenece a la tabla pivote
+        //Eliminamos las categorías a las que pertenece ese chollo y le ponemos las nuevas
+        $cholloActualizar->categorias()->detach(); //Con delete borraríamos también la categoría, no queremos eso
+
+        foreach ($arrayCategorias as $categoria) {
+
+            $cholloActualizar->categorias()->attach(Categoria::where('nombre', $categoria)->get('id'));
+        }
+
+
         $cholloActualizar->precio = $request->precio;
         $cholloActualizar->precio_descuento = $request->precio_descuento;
         $cholloActualizar->save();

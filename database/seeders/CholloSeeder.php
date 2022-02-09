@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chollo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -40,11 +41,8 @@ class CholloSeeder extends Seeder {
 
             for ($j = 0 ; $j < $numeroDeCategorias ; $j++) {
                 //También hay que insertar en la tabla intermedia 
-                DB::table('categoria_chollo')->insert([
-                    'chollo_id' => $id,
-                    'categoria_id' => $faker->numberBetween(1,9),
-                    'created_at' => date('Y-m-d H:i:s')
-                ]);
+                Chollo::findOrFail($id)->categorias()->attach($faker->numberBetween(1,9));
+                //Mejor hacerlo de esta forma que insertando con DB::Table ya que así se rellenan los timestamps
             }
             
         }
