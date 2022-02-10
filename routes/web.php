@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CholloController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\RestController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
