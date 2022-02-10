@@ -59,6 +59,8 @@ class PagesController extends Controller {
                 'created_at' => date('Y-m-d H:i:s')
             ]);
         }
+
+        $nuevoChollo->categorias()->attach(Categoria::where('nombre', $request->categoria)->id());
         //Habría que limitar el número de categorías que se pueden enviar
 
 
@@ -87,9 +89,9 @@ class PagesController extends Controller {
         $cholloActualizar->titulo = $request->titulo;
         $cholloActualizar->descripcion = $request->descripcion;
         $cholloActualizar->url = $request->url;
-
+        
         //$cholloActualizar->categoria = $request->categoria; Cuando solo había una categoría
-
+        
         //Recogemos en un array los datos recibidos de la categoría Ej: videojuegos, salud
         $arrayCategorias = explode(", ", $request->categoria);
 

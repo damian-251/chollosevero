@@ -47,6 +47,7 @@ class CholloController extends Controller {
     //Elimina un chollo
     function eliminar($id) {
         $cholloEliminar = Chollo::findOrFail($id);
+        $cholloEliminar->categorias()->detach($cholloEliminar->categorias);
         $cholloEliminar->delete();
         return back()->with('mensaje', 'Chollo eliminado correctamente');
     }

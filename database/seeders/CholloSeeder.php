@@ -16,7 +16,7 @@ class CholloSeeder extends Seeder {
      */
     public function run() {
 
-        $numeroCampos = 20;
+        $numeroCampos = 100;
 
         for ($i = 0 ; $i < $numeroCampos ; $i++) {
 

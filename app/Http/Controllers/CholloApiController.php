@@ -25,13 +25,7 @@ class CholloApiController extends Controller
     }
 
     public function cholloRandom(){
-        $chollo = DB::table('chollos')->latest('id')->first();
-        $id = $chollo->id;
-        $idAleatoria = random_int(1, $id);
-        $chollo = Chollo::find($idAleatoria);
-        while($chollo == null) {
-            $chollo = Chollo::find($idAleatoria);
-        }
+        $chollo = Chollo::inRandomOrder()->take(1)->get();
         return $chollo;
     }
 
