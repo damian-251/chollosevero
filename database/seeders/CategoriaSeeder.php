@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,11 +16,10 @@ class CategoriaSeeder extends Seeder {
 
         $categorias = ['videojuegos', 'viajes', 'alimentacion', 'comida', 'informatica', 'transporte', 'conduccion', 'salud', 'belleza'];
 
-
         foreach ($categorias as $categoria) {
-            $id = DB::table('categorias')->insertGetId([
-                'nombre' => $categoria,
-                'created_at' => date('Y-m-d H:i:s')]);
+            $categoria = new Categoria();
+            $categoria->nombre = $categoria;
+            $categoria->save();
         }
 
         //

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Página principal
-Route::get("/",[PagesController::class, "inicio"]) ->name("inicio");
+Route::get('/',[RestController::class, 'listarChollos']) ->name('inicio');
 
 //Crear chollo, para la vista de crear chollos necesitamos inicar sesion
 Route::get("chollos/add-chollo",[CholloController::class, 'crearChollo']) ->name('chollos.creacion');
@@ -54,3 +54,7 @@ Route::get('/home', [PagesController::class, 'inicio'])->name('home');
 
 //Sección Mis Chollos
 Route::get('chollos/mischollos', [CholloController::class, 'listarMisChollos'])->name('mis.chollos');
+
+
+//Probamos a cargar algo de la API de Pokémon
+Route::get('pokemon/inicio-pokemon', [RestController::class, 'inicioPokemon'])->name('pokemon.inicio');

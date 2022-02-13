@@ -14,7 +14,7 @@
     @include('chollos/tablaChollos')
 
     <div class="text-center">
-        {{ $chollos->links() }}
+        {{--$chollos->links()--}}
     </div>
 
 

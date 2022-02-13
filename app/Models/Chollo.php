@@ -24,7 +24,7 @@ class Chollo extends Model {
     function categorias() { //Un chollo tiene muchas categorías
         return $this -> belongsToMany(Categoria::class, 'categoria_chollo')->withTimestamps();
     }
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////
     //Como hay dos relaciones muchos a muchos indicamos la tabla pivote
     //With time stamps, así se añadirán las marcas de tiempo a las columnas corresondientes
     function usuariosLike() {

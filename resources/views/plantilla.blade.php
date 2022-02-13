@@ -24,6 +24,7 @@
                     <li> <a href={{ route('novedades') }}>Nuevos</a></li>
                     <li><a href={{ route('destacado') }}>Destacados</a></li>
                     <li><a href={{ route('chollos.creacion')}}>Crear chollo</a></li>
+                    <li><a href={{ route('pokemon.inicio')}}>Pokémon</a></li>
                 </ul>
             </div>
                 <ul class="nav navbar-nav float-right login-register">

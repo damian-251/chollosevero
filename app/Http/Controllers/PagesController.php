@@ -19,7 +19,6 @@ class PagesController extends Controller {
     }
 
     
-
     public function crear(Request $request) {
         //Validación de los datos
         $request -> validate([
@@ -38,7 +37,6 @@ class PagesController extends Controller {
         $nuevoChollo->titulo = $request->titulo;
         $nuevoChollo->descripcion = $request->descripcion;
         $nuevoChollo->url = $request->url;
-        //$nuevoChollo->categoria = $request->categoria;
         $nuevoChollo->precio = $request->precio;
         $nuevoChollo->precio_descuento = $request->precio_descuento;
         $nuevoChollo->usuario_id = Auth::id(); //Le asignamos la id del usuario que ha iniciado sesión
@@ -128,14 +126,12 @@ class PagesController extends Controller {
 
 
     function destacado() {
-        //$chollos = DB::table('chollos')->orderByDesc('puntuacion')->limit(4)->get();
         $chollos = Chollo::orderBy('puntuacion', 'desc')->take(4)->get();
 
         return view('destacados', compact('chollos'));
     }
 
     function novedades() {
-        //$chollos = DB::table('chollos') ->orderByDesc('created_at')->limit(4)->get(); //As
         $chollos = Chollo::all()->sortByDesc('created_at')->take(4);
         return view('novedades', compact('chollos'));
     }
