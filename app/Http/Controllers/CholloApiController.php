@@ -29,6 +29,16 @@ class CholloApiController extends Controller
         return $chollo;
     }
 
+    public function postChollo(Request $response) {
+        $chollo = new Chollo();
+        $chollo->titulo = $response->titulo;
+        $chollo->descripcion = $response->descripcion;
+        $chollo->url = $response->url;
+        $chollo->precio = $response->precio_descuento;
+        $chollo->precio_descuento = $response->precio_descuento;
+        $chollo->save();
+    }
+
     /**
      * Show the form for creating a new resource.
      *

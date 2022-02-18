@@ -30,6 +30,13 @@ class Chollo extends Model {
     function usuariosLike() {
         return $this->belongsToMany(User::class, 'chollo_user')->withTimestamps();
     }
-    
 
+    function attachCategorias($categorias) {
+        return $this-> categorias() -> attach($categorias);
+    }
+
+    function detachCategorias($categorias) {
+        return $this-> categorias()->detach($categorias);
+    }
+    
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Chollo;
-use COM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Aquí estarán las funcionalidades de CholloSevero para las que se necesite
@@ -24,13 +23,16 @@ class CholloController extends Controller {
 
     public function crearChollo() {
         $user = Auth::user();
-        return view('chollos/addChollo', compact('user'));
+        //Seleccionamos también las categorías para poder listarlas con checkbox
+        $categorias = Categoria::all();
+        return view('chollos/addChollo', compact('user', 'categorias'));
     }
 
     public function editar($id) {
         $chollo = Chollo::findOrFail($id);
+        $categorias = Categoria::all();
         if (Auth::id() == $chollo->usuario_id ) {
-            return view('chollos.editar', compact('chollo'));
+            return view('chollos.editar', compact('chollo', 'categorias'));
         }
         return redirect('/');
     }
@@ -112,3 +114,5 @@ class CholloController extends Controller {
         return back();
     }
 }
+
+

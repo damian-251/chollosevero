@@ -35,8 +35,9 @@
     
     <input type="url" name="url" placeholder="URL del chollo" class="form-control mb-2" value="{{old('url')}}" required>
     
-    {{--En categoría los pasamos separados por comas, para luego hacer un array e ir metiéndolos en la tabla correspondiente--}}
-    <input type="text" name="categoria" placeholder="Categoría del chollo" class="form-control mb-2" value="{{old('categoria')}}" required>
+    @foreach ($categorias as $categoria)
+        <label><input name="categorias[]" type="checkbox" value={{$categoria->id}}>{{ $categoria->nombre }}</label>
+    @endforeach
     
     <input type="text" name="precio"  pattern="[0-9]+(\.[0-9][0-9]?)?" placeholder="Precio anterior" class="form-control mb-2" value="{{old('precio')}}" required>
     

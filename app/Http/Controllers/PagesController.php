@@ -6,7 +6,6 @@ use App\Models\Categoria;
 use App\Models\Chollo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller {
     
@@ -25,7 +24,7 @@ class PagesController extends Controller {
             'titulo' => 'required',
             'descripcion' => 'required',
             'url' => 'required|url',
-            'categoria' => 'required',
+            'categorias' => 'required', //Array de categorías que recibimos
             'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'imagen' => 'required|mimes:jpeg'
@@ -40,27 +39,9 @@ class PagesController extends Controller {
         $nuevoChollo->precio = $request->precio;
         $nuevoChollo->precio_descuento = $request->precio_descuento;
         $nuevoChollo->usuario_id = Auth::id(); //Le asignamos la id del usuario que ha iniciado sesión
-        
-        $nuevoChollo->save();
+        $nuevoChollo->save(); //Hay que guardar antes para que se genere la id del chollo
 
-
-        //Le asignamos la categoría al chollo 
-
-        $arrayCategorias = explode(", ", $request->categoria);
-        //La categoría la convertimos en array 
-        
-        //la recorremos para ir insertando los campos en la table
-        foreach ($arrayCategorias as $categoria) {
-            DB::table('categoria_chollo')->insert([
-                'chollo_id' => $nuevoChollo->id,
-                'categoria_id' => DB::table('categorias')->where('nombre', $categoria)->value('id'),
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
-        }
-
-        $nuevoChollo->categorias()->attach(Categoria::where('nombre', $request->categoria)->id());
-        //Habría que limitar el número de categorías que se pueden enviar
-
+        $nuevoChollo->attachCategorias($request->categorias); //Le pasamos el array de ids de categorías directamente
 
         $image_name = $nuevoChollo->id . "-chollo-severo.jpg";
         $path = base_path() . '/public/assets/images';
@@ -77,7 +58,7 @@ class PagesController extends Controller {
             'titulo' => 'required',
             'descripcion' => 'required',
             'url' => 'required|url',
-            'categoria' => 'required',
+            'arrayCategorias' => 'required',
             'precio' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'precio_descuento' => 'required|regex:/[0-9]+(\.[0-9][0-9]?)?/',
             'imagen' => 'mimes:jpeg'
@@ -88,20 +69,11 @@ class PagesController extends Controller {
         $cholloActualizar->descripcion = $request->descripcion;
         $cholloActualizar->url = $request->url;
         
-        //$cholloActualizar->categoria = $request->categoria; Cuando solo había una categoría
-        
-        //Recogemos en un array los datos recibidos de la categoría Ej: videojuegos, salud
-        $arrayCategorias = explode(", ", $request->categoria);
-
-        //Añadimos cada categoria y el chollo a la que pertenece a la tabla pivote
         //Eliminamos las categorías a las que pertenece ese chollo y le ponemos las nuevas
         $cholloActualizar->categorias()->detach(); //Con delete borraríamos también la categoría, no queremos eso
 
-        foreach ($arrayCategorias as $categoria) {
-
-            $cholloActualizar->categorias()->attach(Categoria::where('nombre', $categoria)->get('id'));
-        }
-
+        //Al ponerle el array directamente añadimos todas las categorías (pasamos un array de ids)
+        $cholloActualizar->attachCategorias($request->arrayCategorias);
 
         $cholloActualizar->precio = $request->precio;
         $cholloActualizar->precio_descuento = $request->precio_descuento;
