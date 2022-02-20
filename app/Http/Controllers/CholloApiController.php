@@ -29,6 +29,7 @@ class CholloApiController extends Controller
         return $chollo;
     }
 
+    //Al enviar un post desde el cliente vamos aquí
     public function postChollo(Request $response) {
         $chollo = new Chollo();
         $chollo->titulo = $response->titulo;

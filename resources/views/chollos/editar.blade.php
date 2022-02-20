@@ -57,7 +57,7 @@
         value={{$categoria->id}}
 
         @foreach ($chollo->categorias as $cat)
-            @if ($categoria->id === $cat->pivot->categoria_id)
+            @if ($categoria->id === $cat->id)
                 checked
             @endif
         @endforeach

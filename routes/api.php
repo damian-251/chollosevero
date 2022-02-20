@@ -20,7 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/chollos', [CholloApiController::class, 'index']); //api/chollos
-Route::get('/chollo/{id?}', [CholloApiController::class, 'listarChollo']); //Jason con un solo chollo
+Route::get('/chollos', [CholloApiController::class, 'index']); //api/chollos Obtenemos todos los chollos
+Route::get('/chollo/{id?}', [CholloApiController::class, 'listarChollo']); //Json con un solo chollo
 Route::get('/random', [CholloApiController::class, 'cholloRandom']); //Obtener un chollo aleatorio
+
+//Enviar por post los datos y añadirlos a la base de datos
 Route::post('/add-chollo', [CholloApiController::class, 'postChollo']);
+
